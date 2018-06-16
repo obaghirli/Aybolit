@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="/signup/" method='post'> {% csrf_token %}
+  Username:<br>
+  <input type="text" name="username" value="">
+  <br>
+  Password:<br>
+  <input type="text" name="password" value="">
+  <br>
+  Confirm Password:<br>
+  <input type="text" name="password2" value="">
+  <br>
+  Email:<br>
+  <input type="text" name="email" value="">
+  <br>
+  Organisation:<br>
+  <input type="text" name="organisation" value="">
+  <br>
+  Areas:<br>
+  <input type="text" name="areas" value="">
+  <br>
+  Doctor:<br>
+  <input type="text" name="is_doc" value="True">
+  <br>
+  <br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+</body>
+</html>
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>You are logged in as <i style="color:blue;">{{username}}</i> </h3>
+<a target="" href="http://192.168.1.107:8000/profile/logout/">Logout</a>
+<br><br>
+<form action="/profile/ask" method='post'> {% csrf_token %}
+  Areas:<br>
+  <input type="text" name="areas" value="">
+  <br>
+  Subject:<br>
+  <input type="text" name="subject" value="">
+  <br>
+  Description:<br>
+  <input type="text" name="description" value="">
+  <br>
+  Keywords:<br>
+  <input type="text" name="keywords" value="">
+  <br>
+  <br><br>
+  <input type="submit" value="Ask">
+</form> 
+
+<br><br>
+
+<form action="/profile/reply" method='post'> {% csrf_token %}
+  In_reply_to_id:<br>
+  <input type="text" name="in_reply_to_id" value="">
+  <br>
+  Reply:<br>
+  <input type="text" name="reply" value="">
+  <br>
+  Keywords:<br>
+  <input type="text" name="keywords" value="">
+  <br>
+  <br><br>
+  <input type="submit" value="Reply">
+</form> 
+
+<br><br>
+<form action="/profile/getquestions/1/" method='GET'> {% csrf_token %}
+  <input type="submit" value="Get Questions">
+</form> 
+
+<br><br>
+<form action="/profile/getsubscriptions/1/" method='GET'> {% csrf_token %}
+  <input type="submit" value="Get Subscriptions">
+</form> 
+
+<br><br>
+
+<form action="/profile/getreplies/1/" method='GET'> {% csrf_token %}
+  <input type="submit" value="Get Replies">
+</form> 
+
+<br><br>
+
+<a target="_blank" href="http://192.168.1.107:8000/questions/1/1/">Question Details</a>
+<br><br>
+<a target="_blank" href="http://192.168.1.107:8000/profile/questions/voteup/1/">Question Vote Up</a>
+<br>
+<a target="_blank" href="http://192.168.1.107:8000/profile/questions/votedown/1/">Question Vote Down</a>
+<br>
+<a target="_blank" href="http://192.168.1.107:8000/profile/replies/voteup/36/">Reply Vote Up</a>
+<br>
+<a target="_blank" href="http://192.168.1.107:8000/profile/replies/votedown/1/">Reply Vote Down</a>
+<br><br>
+<a target="_blank" href="http://192.168.1.107:8000/profile/questions/subscribe/7/">Subscribe</a>
+<br>
+<a target="_blank" href="http://192.168.1.107:8000/profile/questions/unsubscribe/7/">Unsubscribe</a>
+<br><br>
+<a target="" href="http://192.168.1.107:8000/profile/questions/delete/8/">Delete Question</a>
+<br>
+<a target="" href="http://192.168.1.107:8000/profile/replies/delete/45/">Delete Reply</a>
+<br>
+
+<br><br>
+<form action="/profile/notifications/1/" method='GET'> {% csrf_token %}
+  <input type="submit" value="Get Notifications">
+</form> 
+
+<br>
+<form action="/profile/notifications/notify/" method='GET'> {% csrf_token %}
+  <input type="submit" value="Notify">
+</form> 
+
+<br>
+<a target="" href="http://192.168.1.107:8000/profile/notifications/view/5/">View Notification</a>
+<br>
+
+</body>
+</html>
+

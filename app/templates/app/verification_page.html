@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="/verify/" method='post'> {% csrf_token %}
+  <h3>Enter Your Verification Code, please</h3><br>
+  Verification code has been sent to your email<br>
+  <input type="text" name="verification_code" value="">
+  <br>
+  <br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+</body>
+</html>
+

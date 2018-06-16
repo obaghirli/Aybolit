@@ -1,0 +1,71 @@
+sudo apt-get --purge remove postgresql\*
+rm -r /etc/postgresql/
+rm -r /etc/postgresql-common/
+rm -r /var/lib/postgresql/
+userdel -r postgres
+groupdel postgres
+
+
+sudo pip uninstall Django
+sudo pip uninstall psycopg2
+
+
+change peers to md5
+uncomment listento 
+
+createsuperuser --username=admin --email=aybolit.noreply@gmail.com
+
+
+# Create your models here.
+class User(models.Model):
+	#pk
+	username = models.CharField(maxlength = 150, null = False)
+	password = models.CharField(maxlength = 150, null = False)
+	email = models.CharField(maxlength = 150, null = False)
+	
+	date_created = models.DateTimeField(default=datetime.now, null = False)
+	last_login = models.DateTimeField(default=datetime.now, null = False) #this will be updated upon each successfull login
+	is_active = models.BooleanField(default = True, null = False) #when the user is created for the first time
+	rating = models.PositiveIntegerField(default = 0, null = False) #includes 0 as well
+
+	list_of_asked_question_ids = models.CharField(max_length=60000, null = False)
+	asked_question_count = models.PositiveIntegerField(default = 0, null = False)
+	list_of_reply_ids = models.CharField(max_length=60000, null = False)
+	reply_count = models.PositiveIntegerField(default = 0, null = False)
+
+	is_doc = models.BooleanField(default = False, null = False)
+	organisation = models.CharField(maxlength = 300, null = False)
+	preferences = models.CharField(maxlength = 600, null = False) #[areas] 
+
+class Reply(models.Model):
+	#pk
+	date_created = models.DateTimeField(default=datetime.now, null = False)
+	created_by_username = models.CharField(maxlength = 150, null = False)
+	last_edited = models.DateTimeField(default=datetime.now, null = False)
+	rating = models.PositiveIntegerField(default = 0, null = False)
+
+	in_reply_to_id = models.PositiveIntegerField(null = False)
+	question_id = models.PositiveIntegerField(null = False)
+
+class Question(models.Model):
+
+	#pk
+	date_created = models.DateTimeField(default=datetime.now, null = False)
+	created_by_username = models.CharField(maxlength = 150, null = False)
+	last_edited = models.DateTimeField(default=datetime.now, null = False)
+	rating = models.PositiveIntegerField(default = 0, null = False)
+
+	view = models.PositiveIntegerField(default = 0, null = False)
+
+	areas = models.CharField(maxlength = 600, null = False)
+	subject = models.CharField(maxlength = 300, null = False)
+	history = models.CharField(maxlength = 500, null = False)
+	history_keywords = models.CharField(maxlength = 300, null = False)
+	symptons = models.CharField(maxlength = 500, null = False)
+	symptons_keywords = models.CharField(maxlength = 300, null = False)
+
+	list_of_reply_ids = models.CharField(max_length=60000, null = False)
+	reply_count = models.PositiveIntegerField(default = 0, null = False)
+	subscribed_users = models.CharField(max_length=60000, null = False)
+	subscriber_count = models.PositiveIntegerField(default = 0, null = False)
+	feed_group = models.CharField(max_length=1, null = False) #[hot, cold, new ] /H C N
